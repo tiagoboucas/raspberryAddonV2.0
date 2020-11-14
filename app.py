@@ -17,9 +17,9 @@ def read_messages(name):
         reply = ser.read(ser.inWaiting())
         if len(reply) > 0:
             print(reply)
-        
-api.add_resource(call, '/call/<string:phoneNumber>', resource_class_kwargs={ 'serial': ser })
-api.add_resource(sms, '/sms/<string:phoneNumber>/<string:message>', resource_class_kwargs={ 'serial': ser })
+
+api.add_resource(call, '/call', '/call/<string:phoneNumber>', resource_class_kwargs={ 'serial': ser })
+api.add_resource(sms, '/sms', '/sms/<string:phoneNumber>/<string:message>', resource_class_kwargs={ 'serial': ser })
 
 if __name__ == '__main__':
     ser.write(b"AT+CMGF=1\r")
