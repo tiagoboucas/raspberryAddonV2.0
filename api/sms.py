@@ -6,6 +6,7 @@ import time
 class sms(Resource):
     def __init__(self, **kwargs):
         self.serial = kwargs['serial']
+        self.modem = kwargs['modem']
 
     def get(self, phoneNumber, message):
         self.sendMessage(phoneNumber, message)
@@ -32,3 +33,4 @@ class sms(Resource):
         time.sleep(0.5)
         self.serial.write(b"AT+CNMI=2,2,0,0,0\r")
         time.sleep(0.5)
+
