@@ -21,14 +21,8 @@ class call(Resource):
 
     def callFunction(self, phoneNumber):
         try:
-           self.modem.smsTextMode = False
-           call = self.modem.dial(phoneNumber)
-           time.sleep(8)
-           self.serial.write(b"ATH\r\n")
-           self.modem.smsTextMode = True
-        finally:
+           call = self.modem.dial(phoneNumber, 8, None)
+        except:
+           print("Exception - Timeout")
            self.serial.write(b"ATH")
-           time.sleep(0.5)
-           self.serial.write(b"ATH0;\r")
-           self.modem.smsTextMode = True
-
+           
