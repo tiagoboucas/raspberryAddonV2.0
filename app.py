@@ -22,8 +22,12 @@ def handleSms(sms):
     global ser
     print(u'== SMS message received ==\nFrom: {0}\nTime: {1}\nMessage:\n{2}\n'.format(sms.number, sms.time, sms.text))
 
-modem = GsmModem(PORT, BAUDRATE, smsReceivedCallbackFunc=handleSms)
-
+try:
+    modem = GsmModem(PORT, BAUDRATE, smsReceivedCallbackFunc=handleSms)
+except e:
+    print(e)
+    modem = GsmModem(PORT, BAUDRATE, smsReceivedCallbackFunc=handleSms)
+    
 def read_messages(name):
     try:
         while 1:
