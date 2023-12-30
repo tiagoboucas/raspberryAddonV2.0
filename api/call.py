@@ -21,8 +21,7 @@ class call(Resource):
 
     def callFunction(self, phoneNumber):
         try:
-           call = self.modem.dial(phoneNumber, 8, None)
-        except e:
-           print(e)
-           self.serial.write(b"ATH")
-           
+            call = self.modem.dial(phoneNumber, 8, None)
+        except Exception as e:
+            print(e)
+            self.serial.write(b"ATH")
